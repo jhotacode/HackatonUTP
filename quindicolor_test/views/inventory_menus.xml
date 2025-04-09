@@ -1,0 +1,10 @@
+<odoo>
+  <data>
+    <!-- Menú raíz -->
+    <menuitem id="quindicolor_menu_root" name="Quindicolor" sequence="1"/>
+
+    <!-- Submenú -->
+    <menuitem id="quindicolor_menu_productos" name="Prodctos" parent="quindicolor_menu_root" sequence="10"/>
+    <menuitem id="quindicolor_menu_productos_items" name="Gestión de Productos" parent="quindicolor_menu_productos"/>
+  </data>
+</odoo>

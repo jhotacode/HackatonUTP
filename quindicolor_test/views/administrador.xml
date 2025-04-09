@@ -1,0 +1,85 @@
+<odoo>
+    <!-- Vista Formulario -->
+    <record id="view_form_producto_quindicolor" model="ir.ui.view">
+        <field name="name">quindicolor.producto.form</field>
+        <field name="model">quindicolor.producto</field>
+        <field name="arch" type="xml">
+             <form string="Producto Quindicolor" create="false" edit="true">
+
+
+                <sheet>
+                    <!-- Primer grupo: Información básica del producto -->
+                    <group>
+                        <group>
+                            <field name="name" string="Nombre del Producto" required="1"/>
+                            <field name="descripcion" string="Descripción" required="1"/>
+                            <field name="categoria" string="Categoría" required="1"/>
+                            <field name="subcategoria" string="Subcategoría"/>
+                        </group>
+
+                        <group>
+                            <field name="codigo_interno" string="Código Interno" readonly="1"/>
+                            <field name="unidad_medida" string="Unidad de Medida"/>
+                            <field name="marca" string="Marca"/>
+                            <field name="proveedor" string="Proveedor"/>
+                        </group>
+                    </group>
+
+                    <!-- Segundo grupo: Precios y stock -->
+                    <group>
+                        <group>
+                            <field name="precio" string="Precio" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="costo" string="Costo" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+
+                        <group>
+                            <field name="stock" string="Stock"/>
+                            <field name="ubicacion_bodega" string="Ubicación en Bodega"/>
+                            <field name="es_activo" string="Activo" widget="boolean"/>
+                        </group>
+                    </group>
+
+                    <button name="action_guardar_info"
+                        type="object"
+                        string="Guardar información"
+                        class="btn btn-success"/>
+                </sheet>
+            
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de Lista (Tree View) -->
+    <record id="view_tree_producto_quindicolor" model="ir.ui.view">
+        <field name="name">quindicolor.producto.tree</field>
+        <field name="model">quindicolor.producto</field>
+        <field name="arch" type="xml">
+            <tree string="Productos Quindicolor">
+                <field name="name" string="Producto"/>
+                <field name="categoria" string="Categoría"/>
+                <field name="precio" string="Precio" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="stock" string="Stock"/>
+                <field name="es_activo" string="Activo" widget="boolean"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista -->
+    <record id="action_productos_quindicolor" model="ir.actions.act_window">
+        <field name="name">Productos</field>
+        <field name="res_model">quindicolor.producto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Agrega nuevos productos aquí y gestiona los existentes.</p>
+        </field>
+    </record>
+
+    <!-- Menú Principal -->
+    <menuitem id="menu_quindicolor_root" name="Quindicolor" sequence="1"/>
+
+    <!-- Menú Productos -->
+    <menuitem id="menu_quindicolor_productos" name="Productos" parent="menu_quindicolor_root" sequence="10"/>
+
+    <!-- Submenú de Productos: Gestionar productos -->
+    <menuitem id="menu_quindicolor_productos_action" name="Gestionar Productos" parent="menu_quindicolor_productos" action="action_productos_quindicolor" sequence="1"/>
+</odoo>
